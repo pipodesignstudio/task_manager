@@ -10,15 +10,18 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
 
-    Future.delayed(const Duration(milliseconds: 1000), () async {
-      if (authProvider.authStatus == AuthStatus.notAuthenticated) {
-        Navigator.pushReplacementNamed(context, 'launch');
-      }
-      Navigator.pushReplacementNamed(context, 'home');
-    });
+    // Future.delayed(const Duration(milliseconds: 1500), () async {
+    //   if (authProvider.authStatus == AuthStatus.notAuthenticated) {
+    //     Navigator.pushReplacementNamed(context, 'launch');
+    //   }
+    //   if (authProvider.authStatus == AuthStatus.authenticated) {
+    //     Navigator.pushReplacementNamed(context, 'home');
+    //   }
+    // });
 
     return Scaffold(
-      body: Center(child: Lottie.asset('assets/lottie/loading.json')),
+      body:
+          Center(child: Lottie.asset('assets/lottie/loading.json', width: 150)),
     );
   }
 }
