@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  animate_do: ^2.1.0
   cloud_firestore: ^3.1.13
   firebase_auth: ^3.3.16
   firebase_core: ^1.15.0
