@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:task_manager/providers/auth_provider.dart';
+import 'package:task_manager/providers/signup_form_provider.dart';
 import 'package:task_manager/screens/home_screen.dart';
 import 'package:task_manager/screens/launch_screen.dart';
 import 'package:task_manager/screens/signup_screen.dart';
@@ -9,6 +10,8 @@ import 'package:task_manager/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:task_manager/shared/custom_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'services/user_creation_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +28,12 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => AuthProvider(),
+        ),
+        Provider(
+          create: (_) => SignUpFormProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => UserCreationService(),
         )
       ],
       child: const MyApp(),

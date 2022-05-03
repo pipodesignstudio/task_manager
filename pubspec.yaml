@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_smart_dialog: ^3.4.5
+  form_field_validator: ^1.1.0
   ionicons: ^0.1.2
 
 dev_dependencies:
