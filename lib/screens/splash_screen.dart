@@ -46,29 +46,15 @@ class LogoContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: 100,
-        height: 100,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: const [
-              BoxShadow(
-                  color: Color.fromRGBO(16, 24, 40, .08),
-                  blurRadius: 16,
-                  spreadRadius: -4,
-                  offset: Offset(0, 12)),
-              BoxShadow(
-                  color: Color.fromRGBO(16, 24, 40, .08),
-                  blurRadius: 16,
-                  spreadRadius: -4,
-                  offset: Offset(0, 4)),
-            ]),
-        child: Center(
-          child: Image.asset(
-            'assets/img/task_logo.png',
-            fit: BoxFit.contain,
-          ),
-        ));
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Image.asset(
+          'assets/img/tasker_logo.png',
+          width: 150,
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
   }
 }

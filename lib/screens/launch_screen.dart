@@ -15,7 +15,18 @@ class LaunchScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              FadeInLeft(child: Image.asset('assets/img/welcome.png', width: 250,)),
+              Image.asset(
+                'assets/img/tasker_logo.png',
+                width: 120,
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              FadeInLeft(
+                  child: Image.asset(
+                'assets/img/welcome.png',
+                width: 200,
+              )),
               Text(
                 'Gestiona tu trabajo en un mismo lugar',
                 style: Theme.of(context).textTheme.headline1,

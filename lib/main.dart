@@ -43,35 +43,32 @@ class MyApp extends StatelessWidget {
       routes: {
         'splash': (_) => const SplashScreen(),
         'launch': (_) => const LaunchScreen(),
-        'home': (_) => const HomeScreen(), 
-        'signup' : (_) => const SignupScreen()
+        'home': (_) => const HomeScreen(),
+        'signup': (_) => const SignupScreen()
       },
       initialRoute: 'splash',
-      navigatorObservers: [
-        FlutterSmartDialog.observer
-      ],
+      navigatorObservers: [FlutterSmartDialog.observer],
       builder: FlutterSmartDialog.init(),
       theme: ThemeData.light().copyWith(
-        textTheme: TextTheme(
-          headline1: GoogleFonts.inter(
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-            color: CustomColors.headings
-          ),
-          headline3: GoogleFonts.inter(
-            fontSize: 22,
-            color: CustomColors.headings,
-            fontWeight: FontWeight.w500
-          )
-        ),
-        textSelectionTheme: const TextSelectionThemeData(cursorColor: CustomColors.primary),
-        primaryColor: CustomColors.primary,
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          backgroundColor: Colors.white
-        )
-      ),
+          textTheme: TextTheme(
+              headline1: GoogleFonts.inter(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: CustomColors.headings),
+              headline3: GoogleFonts.inter(
+                  fontSize: 22,
+                  color: CustomColors.headings,
+                  fontWeight: FontWeight.w500),
+              bodyText1: GoogleFonts.inter(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: CustomColors.body)),
+          textSelectionTheme:
+              const TextSelectionThemeData(cursorColor: CustomColors.primary),
+          primaryColor: CustomColors.primary,
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme:
+              const AppBarTheme(elevation: 0, backgroundColor: Colors.white)),
     );
   }
 }
