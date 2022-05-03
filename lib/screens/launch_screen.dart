@@ -19,7 +19,7 @@ class LaunchScreen extends StatelessWidget {
               FadeInLeft(child: Image.asset('assets/img/welcome.png')),
               Text(
                 'Hora de empezar a gestionar tus tareas de forma eficiente',
-                style: CustomTextStyle.h1,
+                style: Theme.of(context).textTheme.headline1,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
