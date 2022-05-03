@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:task_manager/providers/auth_provider.dart';
 import 'package:task_manager/screens/home_screen.dart';
 import 'package:task_manager/screens/launch_screen.dart';
@@ -46,16 +47,26 @@ class MyApp extends StatelessWidget {
         'signup' : (_) => const SignupScreen()
       },
       initialRoute: 'splash',
+      navigatorObservers: [
+        FlutterSmartDialog.observer
+      ],
+      builder: FlutterSmartDialog.init(),
       theme: ThemeData.light().copyWith(
         textTheme: TextTheme(
           headline1: GoogleFonts.inter(
             fontSize: 36,
             fontWeight: FontWeight.bold,
             color: CustomColors.headings
+          ),
+          headline3: GoogleFonts.inter(
+            fontSize: 22,
+            color: CustomColors.headings,
+            fontWeight: FontWeight.w500
           )
         ),
+        textSelectionTheme: const TextSelectionThemeData(cursorColor: CustomColors.primary),
         primaryColor: CustomColors.primary,
-        scaffoldBackgroundColor: CustomColors.gray50,
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           elevation: 0,
           backgroundColor: Colors.white

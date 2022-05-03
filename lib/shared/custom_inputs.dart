@@ -13,9 +13,10 @@ class InputDecorations {
     return InputDecoration(
         hintText: hintText,
         hintStyle: GoogleFonts.workSans(color: CustomColors.body, fontSize: 14),
-        fillColor: CustomColors.gray300,
+        fillColor: Colors.white,
+        border: const OutlineInputBorder(borderSide: BorderSide(width: 2, color: CustomColors.gray300)),
         filled: true,
-        focusColor: CustomColors.body,
+        focusColor: CustomColors.primary,
         errorMaxLines: 1,
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: CustomColors.gray300, width: 2.0),
@@ -32,11 +33,11 @@ class InputDecorations {
         suffixIcon: suffixIcon,
         enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: CustomColors.gray300,
         )),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.black, width: 2.0),
-          borderRadius: BorderRadius.circular(5.0),
+          borderSide: const BorderSide(color: CustomColors.primary, width: 2.0),
+          borderRadius: BorderRadius.circular(10.0),
         ));
   }
 }

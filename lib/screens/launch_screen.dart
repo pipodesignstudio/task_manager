@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/shared/custom_buttons.dart';
-import 'package:task_manager/shared/custom_textstyle.dart';
 import 'package:animate_do/animate_do.dart';
 
 class LaunchScreen extends StatelessWidget {
@@ -16,9 +15,9 @@ class LaunchScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              FadeInLeft(child: Image.asset('assets/img/welcome.png')),
+              FadeInLeft(child: Image.asset('assets/img/welcome.png', width: 250,)),
               Text(
-                'Hora de empezar a gestionar tus tareas de forma eficiente',
+                'Gestiona tu trabajo en un mismo lugar',
                 style: Theme.of(context).textTheme.headline1,
                 textAlign: TextAlign.center,
               ),
