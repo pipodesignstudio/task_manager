@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:task_manager/providers/auth_provider.dart';
 import 'package:task_manager/screens/home_screen.dart';
 import 'package:task_manager/screens/launch_screen.dart';
+import 'package:task_manager/screens/signup_screen.dart';
 import 'package:task_manager/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'splash': (_) => const SplashScreen(),
         'launch': (_) => const LaunchScreen(),
-        'home': (_) => const HomeScreen()
+        'home': (_) => const HomeScreen(), 
+        'signup' : (_) => const SignupScreen()
       },
       initialRoute: 'splash',
     );

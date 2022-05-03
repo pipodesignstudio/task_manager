@@ -26,14 +26,16 @@ class LaunchScreen extends StatelessWidget {
                 height: 30,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, 'signup');
+                },
                 child: const Text('Regístrate'),
                 style: CustomButton.mainBtn,
               ),
               const SizedBox(
                 height: 15,
               ),
-              ElevatedButton(
+              OutlinedButton(
                 onPressed: () {},
                 child: const Text('Inicia sesión'),
                 style: CustomButton.secondaryBtn,
