@@ -33,19 +33,19 @@ class SignupScreen extends StatelessWidget {
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 35,
-            ),
-            Text('👋 Vamos a crear tu cuenta',
-                style: Theme.of(context).textTheme.headline3),
-            const SizedBox(
-              height: 30,
-            ),
-            SingleChildScrollView(
-              child: Form(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 35,
+              ),
+              Text('👋 Vamos a crear tu cuenta',
+                  style: Theme.of(context).textTheme.headline3),
+              const SizedBox(
+                height: 30,
+              ),
+              Form(
                   key: formProvider.registerFormKey,
                   child: Column(
                     children: [
@@ -72,8 +72,12 @@ class SignupScreen extends StatelessWidget {
                           ),
                           OutlinedButton(
                             onPressed: () async {
+        
+                              if (formProvider.nickName.isEmpty || formProvider.nickName.length < 3) {
+                                return;
+                              }
                               SmartDialog.showLoading();
-
+        
                               await createrUserProvider
                                   .checkUserNickname(formProvider.nickName)
                                   .then((value) => {
@@ -85,7 +89,7 @@ class SignupScreen extends StatelessWidget {
                               if (kDebugMode) {
                                 print(formProvider.nickName);
                               }
-
+        
                               SmartDialog.dismiss();
                             },
                             child: const Icon(
@@ -130,9 +134,9 @@ class SignupScreen extends StatelessWidget {
                       ),
                       const _SelectInterest()
                     ],
-                  )),
-            )
-          ],
+                  ))
+            ],
+          ),
         ),
       ),
     );

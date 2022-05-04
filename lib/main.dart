@@ -10,6 +10,7 @@ import 'package:task_manager/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:task_manager/shared/custom_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_manager/widgets/loading_toast.dart';
 
 import 'services/user_creation_service.dart';
 
@@ -57,7 +58,11 @@ class MyApp extends StatelessWidget {
       },
       initialRoute: 'splash',
       navigatorObservers: [FlutterSmartDialog.observer],
-      builder: FlutterSmartDialog.init(),
+      builder: FlutterSmartDialog.init(
+        loadingBuilder: (String msg, Color background) {
+        return const CustomLoadingToast();
+      },
+      ),
       theme: ThemeData.light().copyWith(
           textTheme: TextTheme(
               headline1: GoogleFonts.inter(
