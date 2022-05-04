@@ -5,11 +5,13 @@ class UserModel {
   String email;
   String? name;
   String interest;
+  String nickname;
   List<Task>? tasks;
 
   UserModel(
       {required this.uid,
       required this.email,
+      required this.nickname,
       this.name,
       required this.interest,
       this.tasks});

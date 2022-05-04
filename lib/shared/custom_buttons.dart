@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/shared/custom_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton {
   static ButtonStyle mainBtn = ButtonStyle(
@@ -27,4 +28,10 @@ class CustomButton {
         const BorderSide(color: CustomColors.complementary, width: 2)),
     foregroundColor: MaterialStateProperty.all(CustomColors.primary),
   );
+
+  static ButtonStyle linkBtn = ButtonStyle(
+      foregroundColor: MaterialStateProperty.all(CustomColors.primary),
+      textStyle: MaterialStateProperty.all(GoogleFonts.inter(
+        color: CustomColors.primary,
+      )));
 }

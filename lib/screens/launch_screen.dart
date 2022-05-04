@@ -46,7 +46,9 @@ class LaunchScreen extends StatelessWidget {
                 height: 15,
               ),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, 'login');
+                },
                 child: const Text('Inicia sesión'),
                 style: CustomButton.secondaryBtn,
               ),
