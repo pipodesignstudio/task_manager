@@ -7,4 +7,6 @@ class CustomColors {
   static const Color complementary = Color(0xFFFFB013);
   static const Color gray300 = Color(0xFFD0D5DD);
   static const Color gray50 = Color(0xFFF9FAFB);
+  static const Color error500 = Color(0xFFF04438);
+  static const Color error300 = Color(0xFFFDA29B);
 }

@@ -8,6 +8,9 @@ class UserCreationService extends ChangeNotifier {
   final CollectionReference nicknames =
       FirebaseFirestore.instance.collection('nicknames');
 
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
+
   Future<void> checkUserNickname(String nickname) async {
     final resp = await nicknames.doc(nickname).get();
 
@@ -20,4 +23,6 @@ class UserCreationService extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<void> postUser(String uid, String email, String interest) async {}
 }

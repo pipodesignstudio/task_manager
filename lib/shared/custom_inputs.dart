@@ -14,15 +14,18 @@ class InputDecorations {
         hintText: hintText,
         hintStyle: GoogleFonts.workSans(color: CustomColors.body, fontSize: 14),
         fillColor: Colors.white,
-        border: const OutlineInputBorder(borderSide: BorderSide(width: 2, color: CustomColors.gray300)),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(width: 2, color: CustomColors.gray300),
+            borderRadius: BorderRadius.circular(12)),
         filled: true,
         focusColor: CustomColors.primary,
         errorMaxLines: 1,
         errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: CustomColors.gray300, width: 2.0),
-          borderRadius: BorderRadius.circular(5.0),
+          borderSide:
+              const BorderSide(color: CustomColors.error300, width: 2.0),
+          borderRadius: BorderRadius.circular(2.0),
         ),
-        errorStyle: GoogleFonts.workSans(color: CustomColors.primary),
+        errorStyle: GoogleFonts.workSans(color: CustomColors.error500),
         labelText: labelText,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
@@ -31,13 +34,15 @@ class InputDecorations {
             ? Icon(prefixIcon, color: CustomColors.body)
             : null,
         suffixIcon: suffixIcon,
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
+        enabledBorder:  OutlineInputBorder(
+            borderSide: const BorderSide(
           color: CustomColors.gray300,
-        )),
+        ),
+        borderRadius: BorderRadius.circular(12),
+        ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: CustomColors.primary, width: 2.0),
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(12.0),
         ));
   }
 }

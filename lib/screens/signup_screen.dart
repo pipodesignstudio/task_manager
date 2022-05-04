@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:task_manager/providers/signup_form_provider.dart';
@@ -49,10 +50,13 @@ class SignupScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
                             child: TextFormField(
-                              initialValue: formProvider.nickName,
+                              validator: formProvider.nickNameValidator,
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
                               onChanged: (value) =>
                                   formProvider.nickName = value,
                               style: GoogleFonts.inter(
@@ -68,6 +72,8 @@ class SignupScreen extends StatelessWidget {
                           ),
                           OutlinedButton(
                             onPressed: () async {
+                              SmartDialog.showLoading();
+
                               await createrUserProvider
                                   .checkUserNickname(formProvider.nickName)
                                   .then((value) => {
@@ -76,13 +82,15 @@ class SignupScreen extends StatelessWidget {
                                         else
                                           {print('Nickname erroneo')}
                                       });
-                              print(formProvider.nickName);
-                              SmartDialog.showLoading();
-                              await Future.delayed(const Duration(seconds: 2));
+                              if (kDebugMode) {
+                                print(formProvider.nickName);
+                              }
+
                               SmartDialog.dismiss();
                             },
-                            child: const Text('Verificar'),
-                            style: CustomButton.altBtnSm,
+                            child: const Icon(
+                                Ionicons.checkmark_done_circle_outline),
+                            style: CustomButton.secondaryBtnSm,
                           ),
                         ],
                       ),
