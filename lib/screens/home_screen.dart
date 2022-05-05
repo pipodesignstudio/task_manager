@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
           child: const Text('cerrar sesión'),
           style: CustomButton.mainBtn,
           onPressed: () {
-            authProvider.LogOut();
+            authProvider.logOut();
             Navigator.pushReplacementNamed(context, 'splash');
           },
         ),

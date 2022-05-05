@@ -28,7 +28,7 @@ class SignupScreen extends StatelessWidget {
         leading: OutlinedIconButton(
           icon: Ionicons.arrow_back,
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, 'launch');
           },
         ),
       ),
@@ -173,7 +173,7 @@ class SignUpForm extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, 'login');
+              Navigator.pushReplacementNamed(context, 'login');
             },
             child: const Text('¿Ya tienes cuenta? Inicia sesión'),
             style: CustomButton.linkBtn,

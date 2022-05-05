@@ -3,10 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:task_manager/providers/auth_provider.dart';
 import 'package:task_manager/providers/login_form_provider.dart';
+import 'package:task_manager/providers/reset_pass_form_provider.dart';
 import 'package:task_manager/providers/signup_form_provider.dart';
 import 'package:task_manager/screens/home_screen.dart';
 import 'package:task_manager/screens/launch_screen.dart';
 import 'package:task_manager/screens/login_screen.dart';
+import 'package:task_manager/screens/reset_password_screen.dart';
 import 'package:task_manager/screens/signup_screen.dart';
 import 'package:task_manager/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +38,7 @@ class AppState extends StatelessWidget {
           create: (_) => SignUpFormProvider(),
         ),
         Provider(create: (_) => LoginFormProvider()),
+        Provider(create: (_) => ResetPassFormProvider(),),
         ChangeNotifierProvider(
           create: (_) => UserCreationService(),
         )
@@ -57,6 +60,7 @@ class MyApp extends StatelessWidget {
         'splash': (_) => const SplashScreen(),
         'launch': (_) => const LaunchScreen(),
         'home': (_) => const HomeScreen(),
+        'resetpass' : (_) => const ResetPasswordScreen(),
         'login': (_) => const LoginScreen(),
         'signup': (_) => const SignupScreen()
       },

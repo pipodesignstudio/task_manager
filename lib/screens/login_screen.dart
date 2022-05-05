@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/providers/login_form_provider.dart';
-import 'package:task_manager/providers/signup_form_provider.dart';
 import 'package:task_manager/services/user_creation_service.dart';
 import 'package:task_manager/shared/custom_colors.dart';
 import 'package:task_manager/shared/custom_inputs.dart';
@@ -94,12 +93,21 @@ class _LoginForm extends StatelessWidget {
                 labelText: 'Contraseña',
                 prefixIcon: Ionicons.lock_closed_outline),
           ),
+          const SizedBox(height: 15,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton.icon(onPressed: (){
+                Navigator.pushNamed(context, 'resetpass');
+              }, icon: const Icon(Ionicons.help_buoy_outline), label: const Text('¿Contraseña olvidada?')),
+            ],
+          ),
           const SizedBox(
-            height: 50,
+            height: 150,
           ),
           TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, 'signup');
+              Navigator.pushReplacementNamed(context, 'signup');
             },
             child: const Text('No tienes cuenta? Regístrate gratis'),
             style: CustomButton.linkBtn,
