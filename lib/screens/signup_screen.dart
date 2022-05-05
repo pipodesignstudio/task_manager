@@ -108,8 +108,7 @@ class SignUpForm extends StatelessWidget {
                       .checkUserNickname(formProvider.nickName)
                       .then((value) => {
                             if (createrUserProvider.validNickname)
-                              //TODO:  enseñar confirmación
-                              {print('Nickname válido')}
+                              {SmartDialog.showToast('${formProvider.nickName} está disponible')}
                             else
                               nickNameController.clear()
                           });
@@ -198,7 +197,6 @@ class SignUpForm extends StatelessWidget {
                             authProvider.signUp(
                                 formProvider.email, formProvider.password),
                             Navigator.pushReplacementNamed(context, 'home'),
-                            print('Nickname válido')
                           }
                         else
                           nickNameController.clear()

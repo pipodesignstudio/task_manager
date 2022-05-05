@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:task_manager/providers/auth_provider.dart';
 import 'package:task_manager/providers/login_form_provider.dart';
-import 'package:task_manager/services/user_creation_service.dart';
 import 'package:task_manager/shared/custom_colors.dart';
 import 'package:task_manager/shared/custom_inputs.dart';
 import 'package:task_manager/widgets/outlined_buttons.dart';
@@ -17,8 +19,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formProvider = Provider.of<LoginFormProvider>(context);
-    final createrUserProvider = Provider.of<UserCreationService>(context);
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
               ),
               _LoginForm(
                   formProvider: formProvider,
-                  createrUserProvider: createrUserProvider),
+                  ),
             ],
           ),
         ),
@@ -60,14 +60,17 @@ class _LoginForm extends StatelessWidget {
   const _LoginForm({
     Key? key,
     required this.formProvider,
-    required this.createrUserProvider,
+  
   }) : super(key: key);
 
   final LoginFormProvider formProvider;
-  final UserCreationService createrUserProvider;
+  
 
   @override
   Widget build(BuildContext context) {
+
+    final authProvider = Provider.of<AuthProvider>(context);
+
     return Form(
       key: formProvider.loginFormKey,
       child: Column(
@@ -116,7 +119,18 @@ class _LoginForm extends StatelessWidget {
             height: 30,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async{
+              if (!formProvider.validateForm()) {
+                return;
+              }
+              if (kDebugMode) {
+                print('Presionado login, email = ${formProvider.email}');
+              }
+              SmartDialog.showLoading();
+              authProvider.logIn(formProvider.email, formProvider.password);
+              SmartDialog.dismiss();
+              Navigator.pushReplacementNamed(context, 'home');
+            },
             child: const Text(
               'Inicio de sesión',
             ),

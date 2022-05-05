@@ -63,6 +63,7 @@ class ResetPasswordScreen extends StatelessWidget {
            }
            await authProvider.resetPassword(formProvder.email).then((value) => {
              SmartDialog.show(widget: NotificationToast(msg: 'Email enviado')),
+             SmartDialog.dismiss(),
              Navigator.pushReplacementNamed(context, 'login')
            });
           }, child: const Text('Resetar contraseña'), style: CustomButton.mainBtn,)
