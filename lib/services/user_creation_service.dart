@@ -29,6 +29,8 @@ class UserCreationService extends ChangeNotifier {
     return nicknames.doc(nickname).set({'nickname': nickname});
   }
 
+  // Vamos a centralizar el postUser() en el auth provider para poder utilizar el uid de Firebase como identificador único. Ir a auth_provider para implementar
+  // Rehazer
   Future<void> postUser(String email, String interest, String nickname) async {
     final String uid = uuid.v4();
     return users
