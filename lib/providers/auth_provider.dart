@@ -46,16 +46,14 @@ class AuthProvider extends ChangeNotifier {
           errorMessage = 'Ya hay un usuario registrado con ese email';
           break;
         case "weak-password":
-          errorMessage =
-              'La contraseña introducida es muy débil';
+          errorMessage = 'La contraseña introducida es muy débil';
           break;
         default:
           errorMessage = 'Se ha producido un error';
       }
       authStatus = AuthStatus.notAuthenticated;
       notifyListeners();
-      SmartDialog.show(
-          widget: NotificationToast(msg: errorMessage!));
+      SmartDialog.show(widget: NotificationToast(msg: errorMessage!));
     }
   }
 
@@ -86,8 +84,7 @@ class AuthProvider extends ChangeNotifier {
       }
       authStatus = AuthStatus.notAuthenticated;
       notifyListeners();
-      SmartDialog.show(
-          widget: NotificationToast(msg: errorMessage!));
+      SmartDialog.show(widget: NotificationToast(msg: errorMessage!));
     }
   }
 
@@ -96,9 +93,20 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> resetPassword(String email) async {
-    await auth
-    .sendPasswordResetEmail(email: email);
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print(e.code);
+      }
+      switch (e.code) {
+        case 'invalid-email':
+          errorMessage = 'No tenemos este email registrado';
+          break;
+        default:
+          errorMessage = 'No tenemos este email registrado';
+      }
+      SmartDialog.show(widget: NotificationToast(msg: errorMessage!));
+    }
   }
-
-
 }
