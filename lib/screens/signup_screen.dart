@@ -129,6 +129,7 @@ class SignUpForm extends StatelessWidget {
           TextFormField(
             initialValue: formProvider.email,
             onChanged: (value) => formProvider.email = value,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: formProvider.emailValidator,
             style: GoogleFonts.inter(
                 color: CustomColors.body, fontWeight: FontWeight.w500),
@@ -142,6 +143,7 @@ class SignUpForm extends StatelessWidget {
             initialValue: formProvider.password,
             onChanged: (value) => formProvider.password = value,
             validator: formProvider.passwordValidator,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             obscureText: true,
             style: GoogleFonts.inter(
                 color: CustomColors.body, fontWeight: FontWeight.w500),
@@ -190,13 +192,7 @@ class SignUpForm extends StatelessWidget {
                   .then((value) => {
                         if (createrUserProvider.validNickname)
                           {
-                            createrUserProvider
-                                .postNickName(formProvider.nickName),
-                            createrUserProvider.postUser(formProvider.email,
-                                formProvider.interest, formProvider.nickName),
-                            authProvider.signUp(
-                                formProvider.email, formProvider.password),
-                            Navigator.pushReplacementNamed(context, 'home'),
+                            authProvider.signUp(formProvider.email, formProvider.password, formProvider.interest, formProvider.nickName)
                           }
                         else
                           nickNameController.clear()
@@ -205,7 +201,7 @@ class SignUpForm extends StatelessWidget {
             child: const Text(
               'Crear mi cuenta',
             ),
-            style: CustomButton.mainBtn,
+            style: formProvider.validateForm() ? CustomButton.mainBtn : CustomButton.disabledBtn,
           ),
         ],
       ),

@@ -1,15 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:task_manager/models/user_model.dart';
+import 'package:task_manager/providers/navigator_provider.dart';
 import 'package:task_manager/widgets/toast_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum AuthStatus { checking, authenticated, notAuthenticated }
 
 class AuthProvider extends ChangeNotifier {
   final auth = FirebaseAuth.instance;
   User? user = FirebaseAuth.instance.currentUser;
-  AuthStatus authStatus = AuthStatus.notAuthenticated;
+  AuthStatus authStatus = AuthStatus.checking;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   String? errorMessage;
+  final CollectionReference nicknames =
+      FirebaseFirestore.instance.collection('nicknames');
+
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
 
   AuthProvider() {
     isAuthenticated();
@@ -27,13 +36,16 @@ class AuthProvider extends ChangeNotifier {
     });
   }
 
-  void signUp(String email, String password) async {
+  Future<void> signUp(String email, String password, String interest, String nickname) async {
     try {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {
+                postNickName(nickname),
+                postUser(interest, nickname),
                 authStatus = AuthStatus.authenticated,
                 notifyListeners(),
+                NavigatorService.replaceTo('home')
               })
           .catchError((e) {
         if (kDebugMode) {
@@ -57,7 +69,7 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  void logIn(String email, String password) async {
+  Future<void> logIn(String email, String password) async {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
@@ -89,7 +101,9 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void logOut() async {
-    auth.signOut();
+    await auth.signOut();
+    authStatus = AuthStatus.notAuthenticated;
+    notifyListeners();
   }
 
   Future<void> resetPassword(String email) async {
@@ -109,4 +123,33 @@ class AuthProvider extends ChangeNotifier {
       SmartDialog.show(widget: NotificationToast(msg: errorMessage!));
     }
   }
+
+  Future<void> postUser(String interest, String nickname) async {
+    final User? user = auth.currentUser;
+    final String uid =  auth.currentUser!.uid;
+
+    return await users.doc(uid).set(
+      {
+          'name': '',
+          'email': user!.email,
+          'nickname': nickname,
+          'uid': uid,
+          'interest': interest,
+          'tasks': []
+        }
+    )
+    // ignore: avoid_print
+    .then((value) => print('Usuario añadido'))
+    .catchError((e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    });
+  }
+
+   Future<void> postNickName(String nickname) async {
+    return nicknames.doc(nickname).set({'nickname': nickname});
+  }
+
+
 }

@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:task_manager/providers/auth_provider.dart';
 import 'package:task_manager/providers/login_form_provider.dart';
+import 'package:task_manager/providers/navigator_provider.dart';
 import 'package:task_manager/providers/reset_pass_form_provider.dart';
 import 'package:task_manager/providers/signup_form_provider.dart';
 import 'package:task_manager/screens/home_screen.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: NavigatorService.navigatorKey,
       title: 'Task Manager',
       routes: {
         'splash': (_) => const SplashScreen(),

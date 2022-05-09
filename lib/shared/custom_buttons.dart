@@ -9,6 +9,12 @@ class CustomButton {
     minimumSize: MaterialStateProperty.all(const Size(220, 50)),
   );
 
+  static ButtonStyle disabledBtn = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(CustomColors.gray300),
+    foregroundColor: MaterialStateProperty.all(Colors.white),
+    minimumSize: MaterialStateProperty.all(const Size(220, 50)),
+  );
+
   static ButtonStyle secondaryBtn = ButtonStyle(
     backgroundColor: MaterialStateProperty.all(Colors.white),
     side: MaterialStateProperty.all(
