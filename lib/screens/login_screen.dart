@@ -129,7 +129,6 @@ class _LoginForm extends StatelessWidget {
               SmartDialog.showLoading();
               authProvider.logIn(formProvider.email, formProvider.password);
               SmartDialog.dismiss();
-              Navigator.pushReplacementNamed(context, 'home');
             },
             child: const Text(
               'Inicio de sesión',

@@ -187,6 +187,7 @@ class SignUpForm extends StatelessWidget {
               if (!formProvider.validateForm()) {
                 return;
               }
+              SmartDialog.showLoading();
               await createrUserProvider
                   .checkUserNickname(formProvider.nickName)
                   .then((value) => {
@@ -197,6 +198,7 @@ class SignUpForm extends StatelessWidget {
                         else
                           nickNameController.clear()
                       });
+              SmartDialog.dismiss();
             },
             child: const Text(
               'Crear mi cuenta',

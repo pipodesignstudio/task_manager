@@ -76,6 +76,7 @@ class AuthProvider extends ChangeNotifier {
           .then((value) => {
                 authStatus = AuthStatus.authenticated,
                 notifyListeners(),
+                NavigatorService.replaceTo('home')
               })
           .catchError((e) {
         if (kDebugMode) {
