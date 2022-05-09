@@ -25,25 +25,25 @@ class UserCreationService extends ChangeNotifier {
     }
   }
 
-  Future<void> postNickName(String nickname) async {
-    return nicknames.doc(nickname).set({'nickname': nickname});
-  }
+  // Future<void> postNickName(String nickname) async {
+  //   return nicknames.doc(nickname).set({'nickname': nickname});
+  // }
 
   // Vamos a centralizar el postUser() en el auth provider para poder utilizar el uid de Firebase como identificador único. Ir a auth_provider para implementar
   // Rehazer
-  Future<void> postUser(String email, String interest, String nickname) async {
-    final String uid = uuid.v4();
-    return users
-        .doc(uid)
-        .set({
-          'name': '',
-          'email': email,
-          'nickname': nickname,
-          'uid': uid,
-          'interest': interest,
-          'tasks': []
-        })
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
-  }
+  // Future<void> postUser(String email, String interest, String nickname) async {
+  //   final String uid = uuid.v4();
+  //   return users
+  //       .doc(uid)
+  //       .set({
+  //         'name': '',
+  //         'email': email,
+  //         'nickname': nickname,
+  //         'uid': uid,
+  //         'interest': interest,
+  //         'tasks': []
+  //       })
+  //       .then((value) => print("User Added"))
+  //       .catchError((error) => print("Failed to add user: $error"));
+  // }
 }

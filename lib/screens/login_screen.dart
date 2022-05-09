@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:task_manager/providers/auth_provider.dart';
 import 'package:task_manager/providers/login_form_provider.dart';
 import 'package:task_manager/shared/custom_colors.dart';
@@ -46,8 +44,8 @@ class LoginScreen extends StatelessWidget {
                 height: 30,
               ),
               _LoginForm(
-                  formProvider: formProvider,
-                  ),
+                formProvider: formProvider,
+              ),
             ],
           ),
         ),
@@ -60,15 +58,12 @@ class _LoginForm extends StatelessWidget {
   const _LoginForm({
     Key? key,
     required this.formProvider,
-  
   }) : super(key: key);
 
   final LoginFormProvider formProvider;
-  
 
   @override
   Widget build(BuildContext context) {
-
     final authProvider = Provider.of<AuthProvider>(context);
 
     return Form(
@@ -96,13 +91,18 @@ class _LoginForm extends StatelessWidget {
                 labelText: 'Contraseña',
                 prefixIcon: Ionicons.lock_closed_outline),
           ),
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              TextButton.icon(onPressed: (){
-                Navigator.pushNamed(context, 'resetpass');
-              }, icon: const Icon(Ionicons.help_buoy_outline), label: const Text('¿Contraseña olvidada?')),
+              TextButton.icon(
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'resetpass');
+                  },
+                  icon: const Icon(Ionicons.help_buoy_outline),
+                  label: const Text('¿Contraseña olvidada?')),
             ],
           ),
           const SizedBox(
@@ -119,16 +119,11 @@ class _LoginForm extends StatelessWidget {
             height: 30,
           ),
           ElevatedButton(
-            onPressed: () async{
+            onPressed: () {
               if (!formProvider.validateForm()) {
                 return;
               }
-              if (kDebugMode) {
-                print('Presionado login, email = ${formProvider.email}');
-              }
-              SmartDialog.showLoading();
-              authProvider.logIn(formProvider.email, formProvider.password);
-              SmartDialog.dismiss();
+              authProvider.signIn(formProvider.email, formProvider.password);
             },
             child: const Text(
               'Inicio de sesión',
